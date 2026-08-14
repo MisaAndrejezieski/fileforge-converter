@@ -207,8 +207,8 @@ Abra um Pull Request
 **Misael Andrejezieski**  
 Analista e Desenvolvedor de Sistemas
 
-[![GitHub](https://img.shields.io/badge/GitHub-MisaAndrejezieski-181717?style=for-the-badge&logo=github)](https://github.com/MisaAndrejezieski)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Misael_Andrejezieski-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/misael-andrejezieski-b4996720a/)
+- GitHub: [MisaAndrejezieski](https://github.com/MisaAndrejezieski)
+- LinkedIn: [Misael Andrejezieski](https://www.linkedin.com/in/misael-andrejezieski-b4996720a/)
 
 Feito com Python e ☕
 
