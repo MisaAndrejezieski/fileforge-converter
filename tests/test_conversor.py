@@ -90,6 +90,7 @@ class TestLeitores(unittest.TestCase):
         from PIL import Image
         img = Image.new('RGB', (1, 1), color='red')
         img.save(self.img_path)
+        img.close()  # Fecha para evitar ResourceWarning
     
     def tearDown(self):
         """Limpa arquivos de teste"""
@@ -107,6 +108,9 @@ class TestLeitores(unittest.TestCase):
         self.assertEqual(arquivo.tipo, TipoArquivo.IMAGEM)
         self.assertEqual(arquivo.propriedades.get('largura'), 1)
         self.assertEqual(arquivo.propriedades.get('altura'), 1)
+        # Fecha a imagem para evitar ResourceWarning
+        if hasattr(arquivo.conteudo, 'close'):
+            arquivo.conteudo.close()
     
     def test_arquivo_nao_encontrado(self):
         """Testa erro ao ler arquivo inexistente"""
@@ -195,6 +199,7 @@ class TestEscritores(unittest.TestCase):
         img = Image.open(resultado)
         self.assertEqual(img.width, 100)
         self.assertEqual(img.height, 100)
+        img.close()  # Fecha para evitar ResourceWarning
     
     def test_formato_nao_suportado(self):
         """Testa erro ao escrever em formato não suportado"""
@@ -222,6 +227,7 @@ class TestEngine(unittest.TestCase):
         self.img_path = os.path.join(self.temp_dir, "teste.png")
         img = Image.new('RGB', (10, 10), color='green')
         img.save(self.img_path)
+        img.close()
     
     def tearDown(self):
         """Limpa arquivos de teste"""
@@ -249,7 +255,7 @@ class TestEngine(unittest.TestCase):
         self.assertTrue(resultado.endswith('.jpg'))
     
     def test_converter_lote(self):
-        """Testa conversão em lote"""
+        """Testa conversão em lote - converte tudo para TXT"""
         arquivos = [self.txt_path, self.img_path]
         resultados = self.engine.converter_lote(
             arquivos, "txt", self.output_dir
@@ -258,6 +264,7 @@ class TestEngine(unittest.TestCase):
         self.assertEqual(len(resultados), 2)
         for r in resultados:
             self.assertTrue(os.path.exists(r))
+            self.assertTrue(r.endswith('.txt'))
     
     def test_arquivo_nao_encontrado(self):
         """Testa erro ao converter arquivo inexistente"""
@@ -305,6 +312,7 @@ class TestIntegracao(unittest.TestCase):
         img_path = os.path.join(self.temp_dir, "imagem.png")
         img = Image.new('RGB', (5, 5), color='purple')
         img.save(img_path)
+        img.close()
         self.arquivos.append(img_path)
     
     def tearDown(self):
@@ -312,7 +320,7 @@ class TestIntegracao(unittest.TestCase):
         shutil.rmtree(self.temp_dir)
     
     def test_fluxo_completo_lote(self):
-        """Testa fluxo completo de conversão em lote"""
+        """Testa fluxo completo de conversão em lote - tudo para TXT"""
         resultados = self.engine.converter_lote(
             self.arquivos, "txt", self.output_dir
         )
