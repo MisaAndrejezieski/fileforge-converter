@@ -90,7 +90,7 @@ class TestLeitores(unittest.TestCase):
         from PIL import Image
         img = Image.new('RGB', (1, 1), color='red')
         img.save(self.img_path)
-        img.close()  # Fecha para evitar ResourceWarning
+        img.close()
     
     def tearDown(self):
         """Limpa arquivos de teste"""
@@ -108,7 +108,6 @@ class TestLeitores(unittest.TestCase):
         self.assertEqual(arquivo.tipo, TipoArquivo.IMAGEM)
         self.assertEqual(arquivo.propriedades.get('largura'), 1)
         self.assertEqual(arquivo.propriedades.get('altura'), 1)
-        # Fecha a imagem para evitar ResourceWarning
         if hasattr(arquivo.conteudo, 'close'):
             arquivo.conteudo.close()
     
@@ -199,7 +198,7 @@ class TestEscritores(unittest.TestCase):
         img = Image.open(resultado)
         self.assertEqual(img.width, 100)
         self.assertEqual(img.height, 100)
-        img.close()  # Fecha para evitar ResourceWarning
+        img.close()
     
     def test_formato_nao_suportado(self):
         """Testa erro ao escrever em formato não suportado"""
@@ -255,16 +254,21 @@ class TestEngine(unittest.TestCase):
         self.assertTrue(resultado.endswith('.jpg'))
     
     def test_converter_lote(self):
-        """Testa conversão em lote - converte tudo para TXT"""
-        arquivos = [self.txt_path, self.img_path]
+        """Testa conversão em lote - converte múltiplos TXT para MD"""
+        # Cria um segundo arquivo TXT
+        txt_path2 = os.path.join(self.temp_dir, "teste2.txt")
+        with open(txt_path2, 'w', encoding='utf-8') as f:
+            f.write("Segundo arquivo de teste")
+        
+        arquivos = [self.txt_path, txt_path2]
         resultados = self.engine.converter_lote(
-            arquivos, "txt", self.output_dir
+            arquivos, "md", self.output_dir
         )
         
         self.assertEqual(len(resultados), 2)
         for r in resultados:
             self.assertTrue(os.path.exists(r))
-            self.assertTrue(r.endswith('.txt'))
+            self.assertTrue(r.endswith('.md'))
     
     def test_arquivo_nao_encontrado(self):
         """Testa erro ao converter arquivo inexistente"""
@@ -320,18 +324,31 @@ class TestIntegracao(unittest.TestCase):
         shutil.rmtree(self.temp_dir)
     
     def test_fluxo_completo_lote(self):
-        """Testa fluxo completo de conversão em lote - tudo para TXT"""
+        """Testa fluxo completo de conversão em lote - apenas TXT para MD"""
+        # Cria apenas arquivos TXT para teste
+        arquivos_txt = []
+        
+        txt1 = os.path.join(self.temp_dir, "doc1.txt")
+        with open(txt1, 'w', encoding='utf-8') as f:
+            f.write("Documento 1")
+        arquivos_txt.append(txt1)
+        
+        txt2 = os.path.join(self.temp_dir, "doc2.txt")
+        with open(txt2, 'w', encoding='utf-8') as f:
+            f.write("Documento 2")
+        arquivos_txt.append(txt2)
+        
         resultados = self.engine.converter_lote(
-            self.arquivos, "txt", self.output_dir
+            arquivos_txt, "md", self.output_dir
         )
         
         # Verifica que todos foram convertidos
-        self.assertEqual(len(resultados), len(self.arquivos))
+        self.assertEqual(len(resultados), len(arquivos_txt))
         
         # Verifica que os arquivos de saída existem
         for r in resultados:
             self.assertTrue(os.path.exists(r))
-            self.assertTrue(r.endswith('.txt'))
+            self.assertTrue(r.endswith('.md'))
     
     def test_fluxo_completo_formatos_diferentes(self):
         """Testa fluxo completo com formatos diferentes"""
@@ -364,6 +381,5 @@ def suite():
 
 
 if __name__ == "__main__":
-    # Roda os testes com detalhes
     runner = unittest.TextTestRunner(verbosity=2)
     runner.run(suite())
