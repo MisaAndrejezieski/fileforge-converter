@@ -1,9 +1,12 @@
+from datetime import datetime
+from pathlib import Path
+
+from docx import Document
 from PIL import Image
 from PyPDF2 import PdfReader
-from docx import Document
-from pathlib import Path
-from datetime import datetime
-from .modelos import ArquivoUniversal, Metadados
+
+from .modelos import ArquivoUniversal, Metadados  # ← IMPORTANTE!
+
 
 class LeitorArquivos:
     def ler(self, caminho: str) -> ArquivoUniversal:
@@ -38,7 +41,7 @@ class LeitorArquivos:
             'modo': imagem.mode,
             'formato': imagem.format
         }
-        return ArquivoUniversal(imagem, metadados, props=props)
+        return ArquivoUniversal(imagem, metadados, propriedades=props)  # ← 'propriedades' corrigido
     
     def _ler_pdf(self, caminho: str, metadados: Metadados):
         reader = PdfReader(caminho)
@@ -46,14 +49,14 @@ class LeitorArquivos:
         for pagina in reader.pages:
             texto += pagina.extract_text() + "\n"
         props = {'paginas': len(reader.pages)}
-        return ArquivoUniversal(texto, metadados, props=props)
+        return ArquivoUniversal(texto, metadados, propriedades=props)  # ← 'propriedades' corrigido
     
     def _ler_docx(self, caminho: str, metadados: Metadados):
         doc = Document(caminho)
         texto = "\n".join([p.text for p in doc.paragraphs])
-        return ArquivoUniversal(texto, metadados, props={'estilos': 'preservado'})
+        return ArquivoUniversal(texto, metadados, propriedades={'estilos': 'preservado'})  # ← 'propriedades' corrigido
     
     def _ler_txt(self, caminho: str, metadados: Metadados):
         with open(caminho, 'r', encoding='utf-8') as f:
             texto = f.read()
-        return ArquivoUniversal(texto, metadados)
+        return ArquivoUniversal(texto, metadados, propriedades={})  # ← 'propriedades' corrigido
