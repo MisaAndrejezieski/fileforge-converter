@@ -2,7 +2,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from .modelos import ArquivoUniversal  # ← IMPORTANTE!
+from .modelos import ArquivoUniversal
 
 
 class EscritorArquivos:
@@ -21,8 +21,28 @@ class EscritorArquivos:
         if ext in ['jpg', 'jpeg'] and imagem.mode in ['RGBA', 'P']:
             imagem = imagem.convert('RGB')
         
-        imagem.save(caminho, format=ext.upper(), quality=85, optimize=True)
+        # CORREÇÃO: Mapeia extensão para formato PIL
+        formato_pil = self._mapear_formato_pil(ext)
+        
+        imagem.save(caminho, format=formato_pil, quality=85, optimize=True)
         return caminho
+    
+    def _mapear_formato_pil(self, ext: str) -> str:
+        """Mapeia extensão para formato suportado pelo Pillow"""
+        mapa = {
+            'jpg': 'JPEG',
+            'jpeg': 'JPEG',
+            'png': 'PNG',
+            'gif': 'GIF',
+            'bmp': 'BMP',
+            'webp': 'WEBP',
+            'tiff': 'TIFF',
+            'tif': 'TIFF'
+        }
+        formato = mapa.get(ext.lower(), ext.upper())
+        if formato == 'JPG':
+            formato = 'JPEG'  # Correção importante!
+        return formato
     
     def _escrever_texto(self, arquivo: ArquivoUniversal, caminho: str, ext: str):
         texto = arquivo.conteudo
