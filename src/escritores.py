@@ -2,6 +2,8 @@ from pathlib import Path
 
 from PIL import Image
 
+from .modelos import ArquivoUniversal  # ← IMPORTANTE!
+
 
 class EscritorArquivos:
     def escrever(self, arquivo_universal: ArquivoUniversal, caminho_saida: str):
