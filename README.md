@@ -202,7 +202,7 @@ Push: git push origin minha-feature
 
 Abra um Pull Request
 
-## 📬 Contato
+📬 Contato
 
 **Misael Andrejezieski**  
 Analista e Desenvolvedor de Sistemas
