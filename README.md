@@ -202,16 +202,13 @@ Push: git push origin minha-feature
 
 Abra um Pull Request
 
-📬 Contato
-<div align="center">
-https://img.shields.io/badge/GitHub-MisaAndrejezieski-181717?style=for-the-badge&logo=github
-https://img.shields.io/badge/LinkedIn-Misael_Andrejezieski-0A66C2?style=for-the-badge&logo=linkedin
-
+📬  Contato
 Misael Andrejezieski
 Analista e Desenvolvedor de Sistemas
 
-</div>
-<div align="center">
+https://img.shields.io/badge/GitHub-MisaAndrejezieski-181717?style=for-the-badge&logo=github
+https://img.shields.io/badge/LinkedIn-Misael_Andrejezieski-0A66C2?style=for-the-badge&logo=linkedin
+
 Feito com Python e ☕
 
 ⭐ Se este projeto te ajudou, considere dar uma estrela no GitHub!
