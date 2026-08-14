@@ -24,7 +24,7 @@ class ArquivoUniversal:
     conteudo: Any
     metadados: Metadados
     tipo: TipoArquivo = TipoArquivo.DESCONHECIDO
-    propriedades: Dict[str, Any] = field(default_factory=dict)
+    propriedades: Dict[str, Any] = field(default_factory=dict)  # ← Nome correto: 'propriedades'
     
     def __post_init__(self):
         if self.metadados.extensao:
