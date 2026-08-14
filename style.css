@@ -178,6 +178,7 @@ header p {
 }
 
 .setting-group input[type="range"] {
+    appearance: none;
     -webkit-appearance: none;
     flex: 1;
     height: 4px;
