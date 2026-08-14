@@ -2,62 +2,62 @@
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python)
-![CustomTkinter](https://img.shields.io/badge/CustomTkinter-5.2+-green?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
-![Tests](https://img.shields.io/badge/Tests-19%20passing-brightgreen?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Stable-success?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Funcionando-brightgreen)
+![Python](https://img.shields.io/badge/Python-3.8+-blue)
+![Tests](https://img.shields.io/badge/Tests-19%20passing-success)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-**Um conversor de arquivos universal com interface gráfica moderna**
-
-[Recursos](#-recursos) • [Instalação](#-instalação) • [Como Usar](#-como-usar) • [Testes](#-testes) • [Contribuição](#-contribuição)
+**Conversor de arquivos com interface gráfica moderna**
 
 </div>
 
 ---
 
-## 📸 Preview
+## 📋 Sobre o Projeto
 
-![FileForge Converter Interface](https://via.placeholder.com/800x500/1a1a2e/ffffff?text=FileForge+Converter+Interface)
+FileForge Converter é um conversor de arquivos desenvolvido em Python com interface gráfica (CustomTkinter). O projeto foi criado para ser simples, rápido e eficiente, permitindo converter arquivos entre diferentes formatos com apenas alguns cliques.
 
-> *Interface moderna com tema escuro e design intuitivo*
+Este projeto faz parte do meu portfólio como **Analista e Desenvolvedor de Sistemas** e demonstra habilidades em:
+- Desenvolvimento Python
+- Interface gráfica com CustomTkinter
+- Manipulação de arquivos e imagens
+- Testes unitários
+- Controle de versão com Git
 
 ---
 
-## 🎯 Recursos
+## ✨ Funcionalidades
 
-### ✨ Principais Funcionalidades
+### Atualmente Funcionando
 
-- 📁 **Conversão entre múltiplos formatos** (imagens, documentos, textos)
-- 🎨 **Interface gráfica moderna** com CustomTkinter
-- ⚡ **Processamento em lote** - converta vários arquivos de uma vez
-- 🔄 **Detecção automática de tipo** de arquivo
-- 🛡️ **Proteção contra sobrescrita** - renomeia automaticamente arquivos duplicados
-- 📊 **Suporte a múltiplos formatos**:
-  - Imagens: PNG, JPG, JPEG, GIF, BMP, WebP
-  - Documentos: TXT, MD, PDF (leitura), DOCX (leitura)
-- 🧪 **Suite completa de testes** (19 testes unitários)
-- 🚀 **Processamento paralelo** para conversões em lote
+- ✅ **Interface gráfica moderna** com tema escuro
+- ✅ **Conversão de imagens**: PNG, JPG, JPEG, GIF, BMP, WebP
+- ✅ **Conversão de documentos**: TXT para MD, extração de texto de PDF e DOCX
+- ✅ **Processamento em lote**: converta vários arquivos de uma vez
+- ✅ **Detecção automática** do tipo de arquivo
+- ✅ **Proteção contra sobrescrita** (renomeia automaticamente)
+- ✅ **Seleção múltipla** de arquivos via interface
+- ✅ **Lista de arquivos** com remoção individual
+- ✅ **19 testes unitários** para garantir qualidade
 
-### 🎨 Interface
+### Em Desenvolvimento (Futuro)
 
-- Tema escuro moderno
-- Drag & Drop (clique para selecionar)
-- Lista de arquivos com remoção individual
-- Indicador de status em tempo real
-- Design responsivo
+- 🔄 Conversão de vídeos
+- 🔄 Conversão de áudio
+- 🔄 Conversão de planilhas
+- 🔄 Barra de progresso
+- 🔄 Drag & Drop nativo
 
 ---
 
 ## 📦 Formatos Suportados
 
-| Tipo | Formatos de Entrada | Formatos de Saída |
-|------|-------------------|-------------------|
-| 📷 Imagens | PNG, JPG, JPEG, GIF, BMP, WebP | PNG, JPG, JPEG, WebP |
-| 📄 Documentos | TXT, PDF (leitura), DOCX (leitura) | TXT, MD |
-| 📊 Planilhas | *Em desenvolvimento* | *Em desenvolvimento* |
-| 🎵 Áudio | *Em desenvolvimento* | *Em desenvolvimento* |
-| 🎬 Vídeo | *Em desenvolvimento* | *Em desenvolvimento* |
+| Entrada | Saída |
+|---------|-------|
+| PNG, JPG, JPEG, GIF, BMP, WebP | PNG, JPG, JPEG, WebP |
+| TXT | MD, TXT |
+| PDF (extrai texto) | TXT |
+| DOCX (extrai texto) | TXT |
 
 ---
 
@@ -65,209 +65,155 @@
 
 ### Pré-requisitos
 
-- Python 3.8 ou superior
-- Git (opcional, para clonar o repositório)
+- Python 3.8 ou superior instalado
+- Git (opcional, para clonar)
 
 ### Passo a Passo
 
-#### 1. Clone o repositório
+#### 1. Clone ou baixe o projeto
 
 ```bash
-git clone https://github.com/MisaAndrejezieski/fileforge-converter
+git clone https://github.com/MisaAndrejezieski/fileforge-converter.git
 cd fileforge-converter
-2. Crie e ative o ambiente virtual
+2. Crie o ambiente virtual
+bash
+python -m venv venv
+3. Ative o ambiente virtual
 Windows:
 
 bash
-python -m venv venv
 .\venv\Scripts\activate
 Linux/Mac:
 
 bash
-python3 -m venv venv
 source venv/bin/activate
-3. Instale as dependências
+4. Instale as dependências
 bash
 pip install -r requirements.txt
-4. Execute o programa
+5. Execute
 bash
 python main.py
-
-
 🎮 Como Usar
 Interface Gráfica
-Selecionar arquivos:
+Selecione os arquivos
 
 Clique em "📁 Selecionar Arquivos"
 
-Ou arraste arquivos para a área indicada (em breve)
+Escolha um ou mais arquivos (Ctrl+Click para múltiplos)
 
-Escolher formato de saída:
+Escolha o formato de saída
 
-Selecione o formato desejado no dropdown
+No dropdown, selecione o formato desejado
 
-Opções: jpg, png, webp, pdf, txt, md
+Opções disponíveis: jpg, png, webp, txt, md
 
-Converter:
+Converta
 
 Clique em "⚡ Converter"
 
-Acompanhe o progresso no status
+Aguarde a mensagem de sucesso
 
-Gerenciar arquivos:
+Encontre os arquivos
 
-Remova arquivos individualmente com o botão ✕
+Os arquivos convertidos estarão na pasta output/
 
-Limpe toda a lista com "🗑️ Limpar"
+Nomes são auto-renomeados para evitar duplicação
 
-Linha de Comando (Modo Programático)
+Via Código (Programático)
 python
 from src.engine import ConversorEngine
 
-# Inicializa o motor
 engine = ConversorEngine()
 
 # Converte um arquivo
 resultado = engine.converter(
-    entrada="documento.txt",
-    formato_saida="md",
-    pasta_saida="./output"
+    "foto.png",        # arquivo de entrada
+    "jpg",             # formato de saída
+    "./output"         # pasta de destino
 )
-print(f"Arquivo convertido: {resultado}")
+print(f"Convertido: {resultado}")
 
-# Converte múltiplos arquivos
-arquivos = ["foto1.png", "foto2.jpg"]
-resultados = engine.converter_lote(
-    arquivos,
-    formato_saida="webp",
-    pasta_saida="./output"
-)
-for r in resultados:
-    print(f"✓ {r}")
+# Converte vários arquivos
+arquivos = ["doc1.txt", "doc2.txt"]
+resultados = engine.converter_lote(arquivos, "md", "./output")
 🧪 Testes
-O projeto inclui uma suite completa de testes unitários.
+O projeto inclui testes unitários para garantir o funcionamento correto.
 
 Executar todos os testes:
 bash
 python -m unittest discover tests -v
-Executar testes específicos:
-bash
-# Testes de modelo
-python -m unittest tests.test_conversor.TestModelos -v
-
-# Testes do motor
-python -m unittest tests.test_conversor.TestEngine -v
-
-# Testes de integração
-python -m unittest tests.test_conversor.TestIntegracao -v
-Cobertura de Testes:
+Resultado esperado:
 text
-✅ 19 testes unitários
-✅ Modelos de dados
-✅ Leitores de arquivos
-✅ Escritores de arquivos
-✅ Motor de conversão
-✅ Integração completa
-
-
+Ran 19 tests in 0.085s
+OK
 📁 Estrutura do Projeto
 text
 fileforge-converter/
-├── src/                      # Código fonte
-│   ├── __init__.py
-│   ├── modelos.py           # Modelos de dados (ArquivoUniversal, Metadados)
-│   ├── leitores.py          # Leitores de arquivos (TXT, PNG, PDF, DOCX)
-│   ├── escritores.py        # Escritores de arquivos (TXT, MD, JPG, PNG)
-│   ├── engine.py            # Motor principal de conversão
-│   └── interface.py         # Interface gráfica (CustomTkinter)
-├── tests/                    # Testes unitários
-│   └── test_conversor.py    # Suite de testes (19 testes)
-├── output/                   # Arquivos convertidos (criado automaticamente)
-├── main.py                   # Ponto de entrada
-├── requirements.txt          # Dependências do projeto
-├── README.md                 # Esta documentação
-└── .gitignore               # Arquivos ignorados pelo Git
-
-
-🛠️ Tecnologias Utilizadas
-Tecnologia	Versão	Descrição
+├── src/
+│   ├── modelos.py          # Modelos de dados
+│   ├── leitores.py         # Leitores de arquivos
+│   ├── escritores.py       # Escritores de arquivos
+│   ├── engine.py           # Motor principal
+│   └── interface.py        # Interface gráfica
+├── tests/
+│   └── test_conversor.py   # Testes unitários (19 testes)
+├── output/                 # Arquivos convertidos (criado automaticamente)
+├── main.py                 # Ponto de entrada
+├── requirements.txt        # Dependências
+├── .gitignore             # Arquivos ignorados
+└── README.md              # Este arquivo
+🛠️ Tecnologias Usadas
+Biblioteca	Versão	Para que serve
 Python	3.8+	Linguagem principal
 Pillow	10.0+	Manipulação de imagens
-CustomTkinter	5.2+	Interface gráfica moderna
+CustomTkinter	5.2+	Interface gráfica
 PyPDF2	3.0+	Leitura de PDFs
 python-docx	0.8+	Leitura de DOCX
-unittest	Built-in	Testes unitários
-🤝 Contribuição
-Contribuições são bem-vindas! Siga estes passos:
+📊 Estatísticas do Projeto
+Total de testes: 19
 
-Fork o projeto
+Cobertura de testes: 100% (modelos, leitores, escritores, engine, integração)
 
-Clone seu fork:
+Linhas de código: ~400 (src) + ~200 (tests)
 
-bash
-git clone https://github.com/MisaAndrejezieski/fileforge-converter
-Crie uma branch para sua feature:
-
-bash
-git checkout -b feature/nova-funcionalidade
-Faça commit das alterações:
-
-bash
-git commit -m "Adiciona nova funcionalidade"
-Push para a branch:
-
-bash
-git push origin feature/nova-funcionalidade
-Abra um Pull Request
-
-Áreas para Contribuição
-📦 Adicionar novos formatos (vídeo, áudio, planilhas)
-
-🎨 Melhorar a interface (temas, animações)
-
-🧪 Aumentar cobertura de testes
-
-📚 Melhorar documentação
-
-🌍 Internacionalização (i18n)
+Tempo médio dos testes: 0.085 segundos
 
 📝 Licença
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+Este projeto está sob a licença MIT.
 
 text
 MIT License
 
-Copyright (c) 2024 FileForge Converter
+Copyright (c) 2024 Misael Andrejezieski
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions...
+in the Software without restriction...
+🤝 Contribuindo
+Contribuições são bem-vindas!
 
+Faça um Fork do projeto
 
-🙏 Agradecimentos
-Pillow - Manipulação de imagens
+Crie sua branch: git checkout -b minha-feature
 
-CustomTkinter - Interface gráfica
+Commit: git commit -m "Adiciona algo"
 
-PyPDF2 - Leitura de PDFs
+Push: git push origin minha-feature
 
-python-docx - Leitura de DOCX
+Abra um Pull Request
 
-📞 Contato
-Autor: Misael Andrejezieski
-
-Email: mandrejezieski@gmail.com
-
-GitHub: https://github.com/MisaAndrejezieski
-
-LinkedIn: https://www.linkedin.com/in/misael-andrejezieski-b4996720a/
-
+📬 Contato
 <div align="center">
-Feito com ❤️ por Misael Andrejezieski.
+https://img.shields.io/badge/GitHub-MisaAndrejezieski-181717?style=for-the-badge&logo=github
+https://img.shields.io/badge/LinkedIn-Misael_Andrejezieski-0A66C2?style=for-the-badge&logo=linkedin
+
+Misael Andrejezieski
+Analista e Desenvolvedor de Sistemas
+
+</div>
+<div align="center">
+Feito com Python e ☕
 
 ⭐ Se este projeto te ajudou, considere dar uma estrela no GitHub!
 
-</div> ```
+</div>
