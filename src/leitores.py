@@ -9,7 +9,6 @@ from .modelos import ArquivoUniversal, Metadados
 
 
 class LeitorArquivos:
-    # Extensões de vídeo suportadas
     EXTENSOES_VIDEO = {'mp4', 'mov', 'avi', 'mkv', 'webm', 'flv', 'wmv', 'm4v', '3gp'}
 
     def ler(self, caminho: str) -> ArquivoUniversal:
