@@ -5,13 +5,16 @@ from docx import Document
 from PIL import Image
 from PyPDF2 import PdfReader
 
-from .modelos import ArquivoUniversal, Metadados  # ← IMPORTANTE!
+from .modelos import ArquivoUniversal, Metadados
 
 
 class LeitorArquivos:
+    # Extensões de vídeo suportadas
+    EXTENSOES_VIDEO = {'mp4', 'mov', 'avi', 'mkv', 'webm', 'flv', 'wmv', 'm4v', '3gp'}
+
     def ler(self, caminho: str) -> ArquivoUniversal:
         path = Path(caminho)
-        
+
         metadados = Metadados(
             nome_arquivo=path.name,
             tamanho_bytes=path.stat().st_size,
@@ -19,9 +22,9 @@ class LeitorArquivos:
             data_criacao=datetime.fromtimestamp(path.stat().st_ctime),
             data_modificacao=datetime.fromtimestamp(path.stat().st_mtime)
         )
-        
+
         ext = metadados.extensao.lower()
-        
+
         if ext in ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp']:
             return self._ler_imagem(caminho, metadados)
         elif ext == 'pdf':
@@ -30,9 +33,11 @@ class LeitorArquivos:
             return self._ler_docx(caminho, metadados)
         elif ext == 'txt':
             return self._ler_txt(caminho, metadados)
+        elif ext in self.EXTENSOES_VIDEO:
+            return self._ler_video(caminho, metadados)
         else:
             raise ValueError(f"Formato não suportado: {ext}")
-    
+
     def _ler_imagem(self, caminho: str, metadados: Metadados):
         imagem = Image.open(caminho)
         props = {
@@ -41,22 +46,34 @@ class LeitorArquivos:
             'modo': imagem.mode,
             'formato': imagem.format
         }
-        return ArquivoUniversal(imagem, metadados, propriedades=props)  # ← 'propriedades' corrigido
-    
+        return ArquivoUniversal(imagem, metadados, propriedades=props)
+
     def _ler_pdf(self, caminho: str, metadados: Metadados):
         reader = PdfReader(caminho)
         texto = ""
         for pagina in reader.pages:
             texto += pagina.extract_text() + "\n"
         props = {'paginas': len(reader.pages)}
-        return ArquivoUniversal(texto, metadados, propriedades=props)  # ← 'propriedades' corrigido
-    
+        return ArquivoUniversal(texto, metadados, propriedades=props)
+
     def _ler_docx(self, caminho: str, metadados: Metadados):
         doc = Document(caminho)
         texto = "\n".join([p.text for p in doc.paragraphs])
-        return ArquivoUniversal(texto, metadados, propriedades={'estilos': 'preservado'})  # ← 'propriedades' corrigido
-    
+        return ArquivoUniversal(texto, metadados, propriedades={'estilos': 'preservado'})
+
     def _ler_txt(self, caminho: str, metadados: Metadados):
         with open(caminho, 'r', encoding='utf-8') as f:
             texto = f.read()
-        return ArquivoUniversal(texto, metadados, propriedades={})  # ← 'propriedades' corrigido
+        return ArquivoUniversal(texto, metadados, propriedades={})
+
+    def _ler_video(self, caminho: str, metadados: Metadados):
+        """
+        Vídeos NÃO são carregados na memória.
+        Guardamos apenas o caminho — o FFmpeg lerá direto do disco.
+        """
+        return ArquivoUniversal(
+            conteudo=None,
+            metadados=metadados,
+            propriedades={'caminho': str(caminho)},
+            caminho_origem=str(caminho)
+        )
