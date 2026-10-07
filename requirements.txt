@@ -7,7 +7,7 @@ ImageIO==2.37.4
 imageio-ffmpeg==0.6.0
 lxml==6.1.1
 moviepy==2.2.1
-numpy==2.5.2
+numpy==2.4.6
 openpyxl==3.1.5
 packaging==26.3
 pandas==3.0.5
