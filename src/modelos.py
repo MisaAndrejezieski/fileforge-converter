@@ -9,6 +9,7 @@ class TipoArquivo(Enum):
     DOCUMENTO = "documento"
     PLANILHA = "planilha"
     TEXTO = "texto"
+    VIDEO = "video"           
     DESCONHECIDO = "desconhecido"
 
 @dataclass
@@ -41,3 +42,5 @@ class ArquivoUniversal:
         if ext in documentos: return TipoArquivo.DOCUMENTO
         if ext in planilhas: return TipoArquivo.PLANILHA
         return TipoArquivo.DESCONHECIDO
+    
+    
