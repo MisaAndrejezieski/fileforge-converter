@@ -36,11 +36,13 @@ class ArquivoUniversal:
         imagens = {'png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'svg'}
         documentos = {'pdf', 'docx', 'doc', 'odt', 'rtf', 'txt', 'md'}
         planilhas = {'xlsx', 'xls', 'csv', 'ods'}
+        videos = {'mp4', 'mov', 'avi', 'mkv', 'webm', 'flv', 'wmv', 'm4v', '3gp'}
         
         ext = extensao.lower().lstrip('.')
         if ext in imagens: return TipoArquivo.IMAGEM
         if ext in documentos: return TipoArquivo.DOCUMENTO
         if ext in planilhas: return TipoArquivo.PLANILHA
+        if ext in videos: return TipoArquivo.VIDEO 
         return TipoArquivo.DESCONHECIDO
     
     
