@@ -171,6 +171,7 @@ header p {
     font-size: 0.85rem;
     flex: 1;
     outline: none;
+    cursor: pointer;
 }
 
 .setting-group select:focus {
@@ -185,6 +186,7 @@ header p {
     background: #2e2a40;
     border-radius: 4px;
     outline: none;
+    cursor: pointer;
 }
 
 .setting-group input[type="range"]::-webkit-slider-thumb {
@@ -202,6 +204,39 @@ header p {
     color: #b7a6ff;
     font-weight: 600;
     font-size: 0.85rem;
+}
+
+/* ─── PROGRESS ─── */
+.progress-section {
+    background: #11101e;
+    padding: 16px 20px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(183, 166, 255, 0.1);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #1a1828;
+    border-radius: 40px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #b7a6ff, #d4a0e8, #8dd0ff);
+    border-radius: 40px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 12px rgba(183, 166, 255, 0.4);
+}
+
+.progress-text {
+    color: #9a96b0;
+    font-size: 0.85rem;
+    text-align: center;
 }
 
 /* ─── FILE LIST ─── */
@@ -282,6 +317,7 @@ header p {
     font-size: 0.7rem;
     color: #b0aac8;
     flex-shrink: 0;
+    text-transform: uppercase;
 }
 
 .file-item .remove-btn {
@@ -344,10 +380,13 @@ header p {
 
 .result-item .preview {
     max-width: 100%;
-    max-height: 90px;
+    max-height: 120px;
     border-radius: 8px;
     margin-bottom: 6px;
     background: #0d0d1a;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .result-item strong {
@@ -379,6 +418,10 @@ footer {
     border-top: 1px solid #1a1830;
     color: #5a5870;
     font-size: 0.8rem;
+}
+
+footer p {
+    margin-bottom: 4px;
 }
 
 footer a {
